@@ -4,7 +4,6 @@ const withAuth = require('../../utils/auth');
 
 // GET /api/users
 router.get('/', (req, res) => {
-    // Access our User model and run .findAll() method
     User.findAll({
         attributes: { exclude: ['password'] }
     })
@@ -73,7 +72,7 @@ router.post('/', (req, res) => {
     });
   });
 
-  // LOGIN
+  // Login 
   router.post('/login', (req, res) => {
     User.findOne({
       where: {
@@ -93,7 +92,6 @@ router.post('/', (req, res) => {
       }
   
       req.session.save(() => {
-        // declare session variables
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.twitter = dbUserData.twitter;
